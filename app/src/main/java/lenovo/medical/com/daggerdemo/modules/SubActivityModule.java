@@ -2,8 +2,8 @@ package lenovo.medical.com.daggerdemo.modules;
 
 import dagger.Module;
 import dagger.Provides;
+import lenovo.medical.com.daggerdemo.presenter.DiskWork;
 import lenovo.medical.com.daggerdemo.presenter.SubWork;
-import lenovo.medical.com.daggerdemo.presenter.UserHandler;
 
 /**
  * Created by lenovo on 2016/4/8.
@@ -11,8 +11,13 @@ import lenovo.medical.com.daggerdemo.presenter.UserHandler;
 @Module
 public class SubActivityModule {
 
+//    @Provides
+//    SubWork provideSubWork(UserHandler userHandler){
+//        return new SubWork(userHandler);
+//    }
+
     @Provides
-    SubWork provideSubWork(UserHandler userHandler){
-        return new SubWork(userHandler);
+    SubWork provideSubWork(DiskWork diskWork){
+        return new SubWork(diskWork);
     }
 }
