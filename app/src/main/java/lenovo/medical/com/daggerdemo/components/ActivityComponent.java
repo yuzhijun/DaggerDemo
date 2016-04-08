@@ -5,6 +5,7 @@ import dagger.Component;
 import lenovo.medical.com.daggerdemo.MainActivity;
 import lenovo.medical.com.daggerdemo.modules.ActivityModule;
 import lenovo.medical.com.daggerdemo.modules.ActivityScope;
+import lenovo.medical.com.daggerdemo.presenter.DiskWork;
 import lenovo.medical.com.daggerdemo.presenter.IUserHandler;
 
 /**
@@ -14,5 +15,5 @@ import lenovo.medical.com.daggerdemo.presenter.IUserHandler;
 @Component(dependencies = AppComponent.class,modules = ActivityModule.class)
 public interface ActivityComponent {
     void inject(MainActivity mainActivity);
-
+//    DiskWork diskWork();
 }
