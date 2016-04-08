@@ -9,5 +9,5 @@ import lenovo.medical.com.daggerdemo.modules.SubActivityModule;
  */
 @Component(modules = SubActivityModule.class)
 public interface SubActivityComponent extends ActivityComponent {
-    void inject(MainActivity mainActivity);
+
 }
