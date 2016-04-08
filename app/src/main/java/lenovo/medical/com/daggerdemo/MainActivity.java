@@ -6,9 +6,11 @@ import android.widget.TextView;
 import javax.inject.Inject;
 
 import lenovo.medical.com.daggerdemo.components.AppComponent;
-import lenovo.medical.com.daggerdemo.components.DaggerSubActivityComponent;
-import lenovo.medical.com.daggerdemo.modules.SubActivityModule;
-import lenovo.medical.com.daggerdemo.presenter.SubWork;
+import lenovo.medical.com.daggerdemo.components.DaggerActivityComponent;
+import lenovo.medical.com.daggerdemo.components.DaggerDependentComponent;
+import lenovo.medical.com.daggerdemo.modules.ActivityModule;
+import lenovo.medical.com.daggerdemo.modules.DependentModule;
+import lenovo.medical.com.daggerdemo.presenter.DiskWork;
 
 public class MainActivity extends BaseActivity {
 
@@ -20,8 +22,14 @@ public class MainActivity extends BaseActivity {
 
 //    @Inject
 //    WrapperWork wrapperWork;
+//    @Inject
+//    SubWork subWork;
+
+//    @Inject
+//    DependentWork dependentWork;
+
     @Inject
-    SubWork subWork;
+    DiskWork diskWork;
 
     private TextView tvShow;
 
@@ -36,7 +44,10 @@ public class MainActivity extends BaseActivity {
 //        tvShow.setText(userHandler.getUsers().get(0).getName());
 //        tvShow.setText(weatherHandler.getWeathers().get(0).getName());
 //        tvShow.setText(wrapperWork.getWrapperUser().get(0).getName());
-        tvShow.setText(subWork.getWrapperUser().get(0).getName());
+//        tvShow.setText(subWork.getWrapperWeather().get(0).getName());
+//        tvShow.setText(dependentWork.getWrapperWeather().get(0).getName());
+
+        tvShow.setText(diskWork.getWeathers().get(0).getName());
     }
 
     @Override
@@ -50,9 +61,17 @@ public class MainActivity extends BaseActivity {
 //                .workModule(new WorkModule())
 //                .build()
 //                .inject(this);
-        DaggerSubActivityComponent.builder()
-                .subActivityModule(new SubActivityModule())
-                .build()
-                .inject(this);
+//        DaggerSubActivityComponent.builder()
+//                .subActivityModule(new SubActivityModule())
+//                .build()
+//                .inject(this);
+
+        DaggerDependentComponent.builder()
+                .dependentModule(new DependentModule())
+                .activityComponent(DaggerActivityComponent.builder()
+                        .appComponent(appComponent)
+                        .activityModule(new ActivityModule(this))
+                        .build())
+                .build().inject(this);
     }
 }
